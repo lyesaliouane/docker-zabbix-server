@@ -35,7 +35,7 @@ docker run --name zabbix-server-mysql -t \
       -d zabbix/zabbix-server-mysql:alpine-6.4-latest
 
 
-Don't foget to replace DB_SERVER_HOST="@your_machine_ip" with your machine's ip address to have for example : 
+Don't forget to replace DB_SERVER_HOST="@your_machine_ip" with your machine's ip address to have for example : 
 -e DB_SERVER_HOST="193.23.22.11" \
 
 
