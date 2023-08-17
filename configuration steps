@@ -60,7 +60,7 @@ And, you can then access using basic logs :
 username : Admin 
 Password : zabbix
 
-Then on the data collections --> Hosts, you can see that your server is not available (Availability --RED)
+Then on the data collections --> Hosts, you can see that your zabbix server is not available (Availability --RED)
 
 to resolve this, we will create a zabbix-agent2 container, using 10050 port. 
 
@@ -77,7 +77,7 @@ and the ip address of the docker bridge <172.17.0.1> --> -e ZBX_SERVER_HOST="172
 
 
 then see zabbix_2.png to configure zabbix server host : 
-put he zabbix-server container hostname for Hostname
+put the zabbix-server container hostname for Hostname
 ip adress machine's on agent field with 10050 port and click on update
 
 
