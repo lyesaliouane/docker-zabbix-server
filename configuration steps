@@ -55,9 +55,34 @@ docker run --name zabbix-web-nginx-mysql -t \
 
 Don't forget to add your machine's ip.
 
-  Now, you can access to the login page web using {your_machine_ip}:{zabbix-web-port}, in my case : http://193.23.22.11:8080 --> "zabbix_1.png" 
+Now, you can access to the login page web using {your_machine_ip}:{zabbix-web-port}, in my case : http://193.23.22.11:8080 --> "zabbix_1.png" 
+And, you can then access using basic logs : 
+username : Admin 
+Password : zabbix
 
+Then on the data collections --> Hosts, you can see that your server is not available (Availability --RED)
 
-
+to resolve this, we will create a zabbix-agent2 container, using 10050 port. 
 
   
+docker run --name zabbix-agent2 \
+      -e ZBX_HOSTNAME="@container_hostname" \
+      -e ZBX_SERVER_HOST="172.17.0.4,172.17.0.1" \
+      -p 10050:10050 \
+      -d zabbix/zabbix-agent2:alpine-6.4-latest
+
+put the zabbix-server container hostname on the ZBX_HOSTNAME variable
+we should specify ip_adress of zabbix-server-mysql container which usually <172.17.0.4> (check with docker inspect) 
+and the ip address of the docker bridge <172.17.0.1> --> -e ZBX_SERVER_HOST="172.17.0.4,172.17.0.1" \
+
+
+then see zabbix_2.png to configure zabbix server host : 
+put he zabbix-server container hostname for Hostname
+ip adress machine's on agent field with 10050 port and click on update
+
+
+The availability will then turn green instead of red --> see zabbix_3.png
+
+
+
+
